@@ -20,7 +20,7 @@ export default class StandaloneLayout extends React.Component {
     let Operations = getComponent("operations", true)
 
     return (
-      <Operations custom={123} />
+      <Operations />
     )
   }
 
