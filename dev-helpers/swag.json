@@ -1,0 +1,325 @@
+{
+    "openapi": "3.0.1",
+    "info": {
+      "title": "Episerver Tracking API - EASTUS 1.0",
+      "description": "Profile Store API for visitor activity tracking.",
+      "contact": {
+        "name": "Episerver",
+        "url": "http://world.episerver.com",
+        "email": "developersupport@episerver.com"
+      },
+      "license": {
+        "name": "End User License Agreement",
+        "url": "http://www.episerver.com/eula/"
+      },
+      "version": "1.0"
+    },
+    "paths": {
+      "/api/v1.0/Track": {
+        "post": {
+          "tags": [
+            "Track"
+          ],
+          "summary": "Handles the specified tracking request.",
+          "parameters": [
+            {
+              "name": "Epi-User-IP-Address",
+              "in": "header",
+              "description": "Can be used to pass the visitor IP address to Tracking API, for example when tracking statistics in website .NET code.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "The tracking request.",
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackEventRequest"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackEventRequest"
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackEventRequest"
+                }
+              }
+            }
+          },
+          "responses": {
+            "401": {
+              "description": "Unauthorized"
+            },
+            "500": {
+              "description": "Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "202": {
+              "description": "Success"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "Turnstile": [ ]
+            }
+          ]
+        }
+      },
+      "/api/v1.0/TrackBulk": {
+        "post": {
+          "tags": [
+            "Track"
+          ],
+          "summary": "Handles several tracking requests.",
+          "parameters": [
+            {
+              "name": "Epi-User-IP-Address",
+              "in": "header",
+              "description": "Can be used to pass the visitor IP address to Tracking API, for example when tracking statistics in website .NET code.",
+              "schema": {
+                "type": "string"
+              }
+            }
+          ],
+          "requestBody": {
+            "description": "The tracking requests.",
+            "content": {
+              "application/json-patch+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrackEventRequest"
+                  },
+                  "description": "The tracking requests.",
+                  "nullable": true
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrackEventRequest"
+                  },
+                  "description": "The tracking requests.",
+                  "nullable": true
+                }
+              },
+              "application/*+json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/TrackEventRequest"
+                  },
+                  "description": "The tracking requests.",
+                  "nullable": true
+                }
+              }
+            }
+          },
+          "responses": {
+            "401": {
+              "description": "Unauthorized"
+            },
+            "500": {
+              "description": "Server Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "202": {
+              "description": "Success"
+            },
+            "400": {
+              "description": "Bad Request",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            },
+            "413": {
+              "description": "Client Error",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "$ref": "#/components/schemas/ErrorResponse"
+                  }
+                }
+              }
+            }
+          },
+          "security": [
+            {
+              "Turnstile": [ ]
+            }
+          ]
+        }
+      }
+    },
+    "components": {
+      "schemas": {
+        "UserDataRequest": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "description": "The username.",
+              "nullable": true
+            },
+            "email": {
+              "type": "string",
+              "description": "The user's email.",
+              "nullable": true
+            },
+            "info": {
+              "type": "object",
+              "additionalProperties": {
+                "type": "string"
+              },
+              "description": "The user information.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "TrackEventRequest": {
+          "required": [
+            "deviceId",
+            "value"
+          ],
+          "type": "object",
+          "properties": {
+            "user": {
+              "$ref": "#/components/schemas/UserDataRequest"
+            },
+            "payload": {
+              "type": "object",
+              "additionalProperties": false,
+              "description": "Additional data related to this event.",
+              "nullable": true
+            },
+            "remoteAddress": {
+              "type": "string",
+              "description": "Override remote address for track event",
+              "nullable": true
+            },
+            "trackId": {
+              "type": "string",
+              "description": "The track identifier. \r\nIt is unique within all track event with the same EnvironmentId and Scope",
+              "nullable": true
+            },
+            "deviceId": {
+              "type": "string",
+              "description": "The device identifier."
+            },
+            "eventType": {
+              "type": "string",
+              "description": "The type of the tracking event.",
+              "nullable": true
+            },
+            "value": {
+              "type": "string",
+              "description": "The tracking data value."
+            },
+            "scope": {
+              "type": "string",
+              "description": "The page scope.",
+              "nullable": true
+            },
+            "pageUri": {
+              "type": "string",
+              "description": "The page URI where event occurs.",
+              "nullable": true
+            },
+            "pageTitle": {
+              "type": "string",
+              "description": "The page title.",
+              "nullable": true
+            },
+            "eventTime": {
+              "type": "string",
+              "description": "The event timestamp.",
+              "format": "date-time",
+              "nullable": true
+            },
+            "sessionId": {
+              "type": "string",
+              "description": "The session id that relate to this event.",
+              "nullable": true
+            }
+          },
+          "additionalProperties": false,
+          "description": "Tracking model that contains additional data related to current event"
+        },
+        "ErrorDetail": {
+          "type": "object",
+          "properties": {
+            "code": {
+              "type": "string",
+              "nullable": true
+            },
+            "message": {
+              "type": "string",
+              "nullable": true
+            },
+            "target": {
+              "type": "string",
+              "nullable": true
+            },
+            "details": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/ErrorDetail"
+              },
+              "nullable": true
+            }
+          },
+          "additionalProperties": false
+        },
+        "ErrorResponse": {
+          "type": "object",
+          "properties": {
+            "error": {
+              "$ref": "#/components/schemas/ErrorDetail"
+            }
+          },
+          "additionalProperties": false
+        }
+      },
+      "securitySchemes": {
+        "Turnstile": {
+          "type": "apiKey",
+          "description": "Authorization header with a value in the following format: epi-single KEY.",
+          "name": "Authorization",
+          "in": "header"
+        }
+      }
+    }
+  }

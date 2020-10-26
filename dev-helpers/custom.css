@@ -1,0 +1,294 @@
+@import url('https://fonts.googleapis.com/css?family=Barlow:300,300i,400,400i,500,500i,600,600i');
+
+/*======================*/
+
+.swagger-ui {
+    font-family: Barlow, sans-serif;
+}
+
+.swagger-ui .opblock-tag {
+    padding: 1.5rem;
+}
+
+#swagger-ui {
+    width: 100%
+}
+
+#swagger-ui .col {
+    width: auto;
+    word-break: normal;
+}
+
+.swagger-ui .opblock.opblock-delete, .swagger-ui .opblock.opblock-put, .swagger-ui .opblock.opblock-get, .swagger-ui .opblock.opblock-post, .swagger-ui .opblock.opblock-patch {
+    background: #EDEDED;
+    border: none;
+    margin-bottom: 15px;
+}
+
+.swagger-ui .opblock {
+    border-radius: 0;
+    border-color: transparent;
+    box-shadow: none;
+}
+
+.swagger-ui .opblock-tag, h4 {
+    border-bottom: none;
+}
+
+.swagger-ui .opblock-tag, .swagger-ui section.models h4, .swagger-ui .opblock .opblock-section-header h4 {
+    font-size: 24px;
+    margin: 0 0 5px;
+    font-family: Barlow, sans-serif;
+    color: #3b4151;
+    border-bottom: 0 !important;
+}
+
+.swagger-ui .opblock .opblock-section-header {
+    box-shadow: none;
+    background: #fff;
+    padding: 16px 0;
+}
+
+.swagger-ui section.models {
+    margin: 0;
+    border: none;
+}
+
+.swagger-ui section.models h4 svg, .swagger-ui .opblock-tag svg {
+    display: none;
+}
+
+.model-container {
+    margin: 0 0 15px !important;
+    background: #EDEDED;
+}
+
+.swagger-ui .model-box {
+    padding: 5.5px;
+}
+
+.swagger-ui .model-title {
+    font-family: monospace;
+}
+
+.swagger-ui .btn {
+    font-family: Barlow, sans-serif;
+    display: inline-block;
+    cursor: pointer;
+    color: #05149b;
+    background-color: #f5f3f1;
+    padding: .5rem 4rem;
+    border: none;
+    border-radius: 0;
+    font-size: 1.125rem;
+    font-weight: 500;
+    box-shadow: none;
+    border-radius: 0!important;
+}
+
+.swagger-ui .btn.execute {
+    color: #fff;
+    background: #05149b;
+    margin-right: 18px;
+}
+
+.swagger-ui .btn:hover {
+    box-shadow: none;
+    color: #fff;
+    background: #05149b;
+}
+
+.swagger-ui .btn.cancel {
+    color: #fff;
+    background: #ff553e;
+}
+
+.swagger-ui .table-container, .swagger-ui .responses-inner {
+    padding: 0;
+}
+
+.swagger-ui table:not(.model) {
+    background: #fff;
+    border: 1px solid #ddd;
+    font-family: Barlow, sans-serif;
+}
+
+.swagger-ui table:not(.model) thead {
+    background: #EDEDED;
+}
+
+.swagger-ui table:not(.model) thead tr td, .swagger-ui table:not(.model) thead tr th, .swagger-ui table:not(.model) tbody tr td {
+    padding: 12px 8px !important;
+    font-family: Barlow, sans-serif!important;
+    font-size: 16px!important;
+    border: 1px solid #ddd;
+}
+
+.swagger-ui table:not(.model) tbody tr:nth-child(2n) {
+    background: #F9F9F9;
+}
+
+.swagger-ui .info {
+    margin: 0;
+}
+
+.swagger-ui .execute-wrapper {
+    padding: 18px 0;
+    background: #fff;
+}
+
+.swagger-ui .btn-group {
+    background: #fff;
+    padding: 18px 0;
+}
+
+.swagger-ui .info .title {
+    font-family: Barlow, sans-serif;
+}
+
+.swagger-ui .parameter__name.required:after {
+    font-size: 12px;
+}
+
+.swagger-ui .info p, .informationBox, .swagger-ui textarea, .swagger-ui .tab li, .swagger-ui label, .swagger-ui [class^='parameter__'], .swagger-ui .markdown p, .swagger-ui textarea.curl, .swagger-ui .responses-inner h5, .swagger-ui .opblock-body pre, .swagger-ui .responses-inner h4, .swagger-ui .model, .swagger-ui .opblock .opblock-summary-path, .swagger-ui .model-title, .swagger-ui .opblock .opblock-summary-description, .swagger-ui .opblock .opblock-section-header > label {
+    font-size: 16px;
+    font-family: Barlow, sans-serif;
+}
+
+.swagger-ui textarea.curl, .swagger-ui .opblock-body pre, .swagger-ui .responses-inner h5 {
+    font-weight: normal;
+}
+
+.swagger-ui select {
+    border: 1px solid #DDDDDD;
+    border-radius: 3px;
+    box-shadow: none;
+    padding: 10px 8px;
+    padding-right: 2rem;
+    font-family: Barlow, sans-serif;
+    font-weight: normal;
+    font-size: 16px;
+}
+
+.swagger-ui .response-col_description__inner div.markdown, .swagger-ui .response-col_description__inner div.renderedMarkdown {
+    background: rgb(51, 51, 51);
+    font-family: Barlow, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+.swagger-ui .response-col_description__inner div.markdown p {
+    padding: 6px;
+}
+
+.swagger-ui .responses-wrapper {
+    background: #fff;
+}
+
+.swagger-ui textarea.curl, .swagger-ui .opblock-body pre, .swagger-ui .highlight-code > .microlight {
+    background-color: #1e1e1e;
+}
+
+.swagger-ui .topbar .download-url-wrapper .select-label {
+    color: #000;
+}
+
+.swagger-ui .topbar {
+    padding: 20px 0;
+    background-color: #fff;
+}
+
+.swagger-ui .opblock-tag-section {
+    border-bottom: 1px solid #E6E4E3;
+}
+
+.api-action table th:first-child,
+.api-action table td:first-child {
+    width: 30%;
+}
+
+.swagger-ui .response-col_description__inner div.markdown, .swagger-ui .response-col_description__inner div.renderedMarkdown {
+    color: #fff;
+}
+
+.swagger-ui p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/*======================*/
+.swagger-ui {
+    letter-spacing: 1.2px !important;
+    font-family: Barlow;
+}
+
+.scheme-container {
+    display: none
+}
+
+.swagger-heading {
+    background: #536171;
+    padding: 40px;
+    padding-bottom: 0;
+    color: #fff;
+    font-size: 26px;
+}
+
+    .swagger-heading .tag {
+        color: lightgray
+    }
+
+.opblock {
+    border: none !important;
+    box-shadow: none !important
+}
+
+
+.opblock-summary-method {
+    background: none !important;
+    color: lightgray !important;
+    border: 1px solid lightgray;
+    min-width: auto !important;
+    font-size: 12px !important;
+    padding: 6px !important;
+}
+
+.opblock-summary {
+    background: #536171 !important;
+    padding: 40px !important;
+    padding-top: 20px !important;
+}
+
+.opblock-summary-path a {
+    padding-left: .5rem;
+    color: #16c98d !important;
+    letter-spacing: 2px !important;
+    text-decoration:none;
+}
+
+.opblock-summary-description {
+    color: #fff !important;
+}
+
+.authorization__btn {display:none;}
+
+.opblock-section-header {
+    display: flex;
+    align-items: center;
+}
+
+.tab-header {
+    flex: 1;
+}
+
+.opblock-summary-description {
+    margin-top: .5rem;
+}
+
+.swagger-ui .opblock .opblock-section-header h4 {
+    margin: 40px 0 40px 40px;
+}
+
+.btn.try-out__btn {
+    margin-right: 20px;
+}
