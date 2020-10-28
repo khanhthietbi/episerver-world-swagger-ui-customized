@@ -1,11 +1,11 @@
 import StandaloneLayout from "./layout"
-import TopbarPlugin from "plugins/topbar"
+import CustomPlugin from "plugins/custom"
 import ConfigsPlugin from "corePlugins/configs"
 
 // the Standalone preset
 
 export default [
-  TopbarPlugin,
+  CustomPlugin,
   ConfigsPlugin,
   () => {
     return {
