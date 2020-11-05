@@ -45,11 +45,18 @@ export default class Operations extends React.Component {
       maxDisplayedTags,
     } = getConfigs()
 
+    // Custom filter by tag and OperationId
     let filter = layoutSelectors.currentFilter()
-    
-    if (filter) {
-      if (filter !== true) {
-        taggedOps = fn.opsFilter(taggedOps, filter)
+    let tagFltr, opIdFltr;
+    if (filter)
+    {
+      let spl = filter.split('/')
+      tagFltr = spl[1]
+      opIdFltr = spl[2]
+      if (tagFltr) {
+        if (filter !== true) {
+          taggedOps = fn.opsFilter(taggedOps, tagFltr)
+        }
       }
     }
 
@@ -62,9 +69,9 @@ export default class Operations extends React.Component {
           {
             taggedOps.map( (tagObj, tag) => {
               let operations = tagObj.get("operations")
-              if (typeof(path) !== "undefined" && path !== "")
+              if (typeof(opIdFltr) !== "undefined" && opIdFltr !== "")
               {
-                var filtered = operations.filter((op) => op.get("operation").get("operationId") === path.split('/').pop());
+                var filtered = operations.filter((op) => op.get("operation").get("operationId") === opIdFltr);
                 operations = filtered.size == 0 ? operations : filtered
               }
               return (

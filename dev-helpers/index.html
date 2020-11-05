@@ -40,21 +40,23 @@
     window.onload = function() {
       window["SwaggerUIBundle"] = window["swagger-ui-bundle"]
       window["SwaggerUIStandalonePreset"] = window["swagger-ui-standalone-preset"]
-      // path = "#/Attachments/count";
-      // window.location.hash = path;
+
       // Build a system
       const ui = SwaggerUIBundle({
         url: "swag.json",
         dom_id: '#swagger-ui',
         defaultModelsExpandDepth: -1,
-        filter: 'Catalog',
+        
+        //Custom filter by "#/{tag}/operationId"
+        filter: '#/Association/Association_GetCatalogAssociations',
         supportedSubmitMethods: [],
         presets: [
           SwaggerUIBundle.presets.apis,
+          SwaggerUIStandalonePreset
         ],
         plugins: [
           SwaggerUIBundle.plugins.DownloadUrl,
-          SwaggerUIStandalonePreset
+          
         ],
         layout: "StandaloneLayout",
       })
