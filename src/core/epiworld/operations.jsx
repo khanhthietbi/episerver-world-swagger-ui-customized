@@ -47,12 +47,16 @@ export default class Operations extends React.Component {
 
     // Custom filter by tag and OperationId
     let filter = layoutSelectors.currentFilter()
-    let tagFltr, opIdFltr;
+    let methodFltr, urlFltr, tagFltr,opIdFltr
     if (filter)
     {
-      let spl = filter.split('/')
-      tagFltr = spl[1]
-      opIdFltr = spl[2]
+      //post|/api/v1.0/projects/{projectId}/environments/{environment}/databases/{databaseName}/exports|DatabaseExports|DatabaseExportApi_ExportDatabase
+      let spl = filter.split('|')
+      methodFltr = spl[0]
+      urlFltr = spl[1]
+      tagFltr = spl[2]
+      opIdFltr = spl[3]
+
       if (tagFltr) {
         if (filter !== true) {
           taggedOps = fn.opsFilter(taggedOps, tagFltr)
@@ -69,11 +73,25 @@ export default class Operations extends React.Component {
           {
             taggedOps.map( (tagObj, tag) => {
               let operations = tagObj.get("operations")
+              let filtered = operations
+              // Filter by OperationId
               if (typeof(opIdFltr) !== "undefined" && opIdFltr !== "")
               {
-                var filtered = operations.filter((op) => op.get("operation").get("operationId") === opIdFltr);
-                operations = filtered.size == 0 ? operations : filtered
+                filtered = filtered.filter(op => op.get("operation").get("operationId") === opIdFltr)
               }
+              // Filter by Operation URL
+              if (typeof(urlFltr) !== "undefined" && urlFltr !== "")
+              {
+                filtered = filtered.filter(op => op.get("path") === urlFltr)
+              }
+              // Filter by method
+              if (typeof(methodFltr) !== "undefined" && methodFltr !== "")
+              {
+                filtered = filtered.filter(op => op.get("method") === methodFltr)
+              }
+              // Fallback
+              operations = filtered.size == 0 ? operations.filter((op,k) => k === 0) : filtered
+
               return (
                 <OperationTag
                   key={"operation-" + tag}

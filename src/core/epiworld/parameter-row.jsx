@@ -247,7 +247,7 @@ export default class ParameterRow extends Component {
               <tbody>
                 <tr>
                     <td>
-                        <span className="parameter__name">&#123;{ param.get("name") }&#125;</span>
+                        <span className="parameter__name">&#123;{ param.get("name") }&#125;</span><span className="parameter-in">({param.get("in")})</span>
                         &nbsp;
                         <span className="parameter__type">
                             { type }
